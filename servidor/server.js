@@ -3,6 +3,7 @@ const Inventario = require("../dados.json");
 
 const mostrarInventario = (req, res) => {
     res.send(Inventario)
+    
 }
 
 
@@ -11,6 +12,12 @@ const novoInventario = (req, res) => {
     if(req.body){
         res.send("Item adicionado ao inventário!");
         Inventario.push(req.body);
+        if(req.body){
+            const novoId = Inventario.length + 1;
+            req.body.id = novoId;
+            Inventario.push(req.body);
+            res.send("Item adicionado ao inventário!");
+        }
     }else{
 
         res.send("Erro ao receber o Inventário!");
